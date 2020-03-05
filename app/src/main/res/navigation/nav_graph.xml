@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/directoryListFragment">
+
+    <activity
+        android:id="@+id/directoryListActivity"
+        android:name="edu.uga.cs.msproject.gradhelper.facultyDirectory.DirectoryListActivity"
+        android:label="activity_directory_list"
+        tools:layout="@layout/activity_directory_list" />
+
+    <fragment
+        android:id="@+id/directoryListFragment"
+        android:name="edu.uga.cs.msproject.gradhelper.facultyDirectory.DirectoryListFragment"
+        android:label="Faculty Directory"
+        tools:layout="@layout/fragment_directory_list" >
+        <action
+            android:id="@+id/action_directoryListFragment_to_facultyDetailFragment"
+            app:destination="@id/facultyDetailFragment" >
+        </action>
+    </fragment>
+
+    <fragment
+        android:id="@+id/locationListFragment"
+        android:name="edu.uga.cs.msproject.gradhelper.locationFinder.LocationListFragment"
+        android:label="Location Types"
+        tools:layout="@layout/fragment_location_list" />
+
+    <fragment
+        android:id="@+id/facultyDetailFragment"
+        android:name="edu.uga.cs.msproject.gradhelper.facultyDirectory.FacultyDetailFragment"
+        android:label="Faculty Details">
+        <argument
+            android:name="professorInfo"
+            app:argType="edu.uga.cs.msproject.gradhelper.dataObjects.Professor"
+            app:nullable="true"
+            android:defaultValue="@null"/>
+
+    </fragment>
+    <fragment
+        android:id="@+id/researchListFragment"
+        android:name="edu.uga.cs.msproject.gradhelper.researchTopics.ResearchListFragment"
+        android:label="Research Topics"
+        tools:layout="@layout/fragment_research_list" >
+        <action
+            android:id="@+id/action_researchListFragment_to_researchDetailFragment"
+            app:destination="@id/researchDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/researchDetailFragment"
+        android:name="edu.uga.cs.msproject.gradhelper.researchTopics.ResearchDetailFragment"
+        android:label="Research Detail"
+        tools:layout="@layout/fragment_research_detail">
+        <argument
+            android:name="researchInfo"
+            app:argType="edu.uga.cs.msproject.gradhelper.dataObjects.Research"
+            app:nullable="true"
+            android:defaultValue="@null" />
+        <action
+            android:id="@+id/action_researchDetailFragment_to_facultyDetailFragment"
+            app:destination="@id/facultyDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/classListFragment"
+        android:name="edu.uga.cs.msproject.gradhelper.classList.ClassListFragment"
+        android:label="Class List"
+        tools:layout="@layout/fragment_class_list" />
+</navigation>

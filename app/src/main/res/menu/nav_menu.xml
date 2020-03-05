@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:id="@+id/primary">
+        <item
+            android:id="@id/locationListFragment"
+            android:icon="@android:drawable/ic_menu_add"
+            android:title="Locations" />
+        <item
+            android:id="@id/directoryListFragment"
+            android:icon="@android:drawable/btn_star"
+            android:title="Directory" />
+        <item
+            android:id="@id/researchListFragment"
+            android:icon="@android:drawable/btn_minus"
+            android:title="Research"/>
+        <item
+            android:id="@id/classListFragment"
+            android:icon="@android:drawable/ic_btn_speak_now"
+            android:title="Class List" />
+    </group>
+
+</menu>

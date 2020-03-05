@@ -1,0 +1,44 @@
+<resources>
+    <string name="app_name">Grad Helper</string>
+    <string name="name_placeholder">Professor Name</string>
+    <string name="title_placeholder">Professor Title</string>
+    <string name="email_title">Email:</string>
+    <string name="email_placeholder">Email Placeholder</string>
+    <string name="office_title">Office:</string>
+    <string name="office_placeholder">Office Placeholder</string>
+    <string name="website_title">Website:</string>
+    <string name="website_placeholder">Website Placeholder</string>
+    <string name="reserach_focus_title">Research Focus:</string>
+    <string name="research_placeholder">Research Placeholder</string>
+    <string name="directions_button">Directions</string>
+    <string name="directions_disclaimer">*to Building</string>
+    <string name="research_name">Research Name</string>
+    <string name="location_name">Location Name</string>
+    <string name="research_description_title">Description:</string>
+    <string name="research_description_content">Description Placeholder</string>
+    <string name="class_name">Class Name</string>
+    <string name="semester_offered_title">Semester Offered:</string>
+    <string name="semester_offered_content">Semesters Offered Placeholder</string>
+    <string name="course_id_placeholder">Course ID:</string>
+
+    <string-array name="location_types">
+        <item>Restaurant</item>
+        <item>Coffee Shop</item>
+        <item>Grocery Store</item>
+        <item>Pharmacy</item>
+        <item>Department Store</item>
+        <item>Doctor\'s Office</item>
+        <item>Attractions</item>
+        <item>Hospital</item>
+    </string-array>
+
+    <string-array name="degree_types">
+        <item>None Selected</item>
+        <item>M.S. Non-Thesis</item>
+        <item>M.S. Thesis</item>
+        <item>Ph.D</item>
+    </string-array>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>

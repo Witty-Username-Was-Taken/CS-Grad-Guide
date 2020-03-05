@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "906290739286",
+    "firebase_url": "https://grad-helper-1578317309886.firebaseio.com",
+    "project_id": "grad-helper-1578317309886",
+    "storage_bucket": "grad-helper-1578317309886.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:906290739286:android:c71b96efdcfb9bef0263f7",
+        "android_client_info": {
+          "package_name": "edu.uga.cs.msproject.gradhelper"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "906290739286-7nckh36u4r3hbftg02i74bktrbd5l2en.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA3CTZ7jG5ta8xGrL6PjEzCLo4JyRWdI4k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "906290739286-7nckh36u4r3hbftg02i74bktrbd5l2en.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
