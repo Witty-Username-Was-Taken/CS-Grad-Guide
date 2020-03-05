@@ -1,15 +1,11 @@
 package edu.uga.cs.msproject.gradhelper.locationFinder
 
-import android.content.Context
-import android.content.res.Resources
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.core.net.toUri
 import androidx.recyclerview.widget.RecyclerView
 import edu.uga.cs.msproject.gradhelper.R
 import edu.uga.cs.msproject.gradhelper.dataObjects.Professor
-import edu.uga.cs.msproject.gradhelper.facultyDirectory.FacultyMember
-import java.io.File
+
 
 class DirectoryListRecyclerViewAdapter( val clickListener: DirectorySelectionRecyclerViewClickListener) :
     RecyclerView.Adapter<DirectoryListViewHolder>() {
