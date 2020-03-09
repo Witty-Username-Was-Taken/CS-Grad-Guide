@@ -68,74 +68,112 @@ abstract class ProfessorDatabase : RoomDatabase() {
             suspend fun populateDatabase(professorDao: ProfessorDao, researchDao: ResearchDao, classItemDao: ClassItemDao, res: Resources) {
 
                 // Delete all content here
-                professorDao.deleteAllProfResearch()
-                professorDao.deleteAll()
-                researchDao.deleteAll()
-                classItemDao.deleteClasses()
+//                professorDao.deleteAllProfResearch()
+//                professorDao.deleteAll()
+//                researchDao.deleteAll()
+//                classItemDao.deleteClasses()
 
                 System.out.println("ProfessorDatabase populateDatabase!")
 
-                try {
-                    var csvReader = CSVReader(InputStreamReader(res.openRawResource(R.raw.professor_info)))
+                // Create Professors table
+                if (professorDao.professorsCount() == 0) {
+                    try {
+                        var csvReader =
+                            CSVReader(InputStreamReader(res.openRawResource(R.raw.professor_info)))
 
-                    var nextLine : Array<String> = csvReader.readNext()
+                        var nextLine: Array<String> = csvReader.readNext()
 
-                    while (nextLine != null) {
-                        val newProfessor = Professor(nextLine.get(0),nextLine.get(1),nextLine.get(2),
-                            nextLine.get(3),nextLine.get(4),nextLine.get(5),nextLine.get(6),nextLine.get(7),nextLine.get(8),nextLine.get(9),
-                            nextLine.get(10))
-                        professorDao.insert(newProfessor)
-                        nextLine = csvReader.readNext()
+                        while (nextLine != null) {
+                            val newProfessor = Professor(
+                                nextLine.get(0),
+                                nextLine.get(1),
+                                nextLine.get(2),
+                                nextLine.get(3),
+                                nextLine.get(4),
+                                nextLine.get(5),
+                                nextLine.get(6),
+                                nextLine.get(7),
+                                nextLine.get(8),
+                                nextLine.get(9),
+                                nextLine.get(10)
+                            )
+                            professorDao.insert(newProfessor)
+                            nextLine = csvReader.readNext()
+                        }
+
+                        System.out.println("ProfessorDatabase done with CSV!")
+                    } catch (e: Exception) {
+
                     }
-
-                    System.out.println("ProfessorDatabase done with CSV!")
-                } catch (e : Exception) {
-
                 }
-                try {
-                    var csvReader = CSVReader(InputStreamReader(res.openRawResource(R.raw.research_list)))
-
-                    var nextLine : Array<String> = csvReader.readNext()
-
-                    while (nextLine != null) {
-                        val newResearch = Research(nextLine.get(0),nextLine.get(1),nextLine.get(2))
-                        researchDao.insert(newResearch)
-                        nextLine = csvReader.readNext()
-                    }
-
-                } catch (e : Exception) {
-
-                }
-                try {
-                    var csvReader = CSVReader(InputStreamReader(res.openRawResource(R.raw.research_profs)))
-
-                    var nextLine : Array<String> = csvReader.readNext()
-
-                    while (nextLine != null) {
-                        val newResearchProf = ProfessorResearchCrossRef(nextLine.get(1),nextLine.get(0))
-                        professorDao.insertResearchProf(newResearchProf)
-                        Log.d(TAG,newResearchProf.id)
-                        nextLine = csvReader.readNext()
-                    }
-
-                } catch (e : Exception) {
-                    Log.d(TAG,e.toString())
+                else {
+                    System.out.println("Professor Count: " + professorDao.professorsCount())
                 }
 
-                try {
-                    var csvReader = CSVReader(InputStreamReader(res.openRawResource(R.raw.class_list)))
+                // Create Research table
+                if (researchDao.researchCount() == 0) {
+                    try {
+                        var csvReader =
+                            CSVReader(InputStreamReader(res.openRawResource(R.raw.research_list)))
 
-                    var nextLine : Array<String> = csvReader.readNext()
+                        var nextLine: Array<String> = csvReader.readNext()
 
-                    while (nextLine != null) {
-                        val newClass = ClassItem(nextLine.get(0),nextLine.get(1),nextLine.get(2),nextLine.get(3))
-                        classItemDao.insertClass(newClass)
-                        Log.d(TAG,newClass.course_id.toString())
-                        nextLine = csvReader.readNext()
+                        while (nextLine != null) {
+                            val newResearch =
+                                Research(nextLine.get(0), nextLine.get(1), nextLine.get(2))
+                            researchDao.insert(newResearch)
+                            nextLine = csvReader.readNext()
+                        }
+
+                    } catch (e: Exception) {
+
                     }
+                }
 
-                } catch (e : Exception) {
-                    Log.d(TAG,e.toString())
+                // Create ResearchProf table
+                if (professorDao.profResearchCount() == 0) {
+                    try {
+                        var csvReader =
+                            CSVReader(InputStreamReader(res.openRawResource(R.raw.research_profs)))
+
+                        var nextLine: Array<String> = csvReader.readNext()
+
+                        while (nextLine != null) {
+                            val newResearchProf =
+                                ProfessorResearchCrossRef(nextLine.get(1), nextLine.get(0))
+                            professorDao.insertResearchProf(newResearchProf)
+                            Log.d(TAG, newResearchProf.id)
+                            nextLine = csvReader.readNext()
+                        }
+
+                    } catch (e: Exception) {
+                        Log.d(TAG, e.toString())
+                    }
+                }
+
+                // Create Classes table
+                if (classItemDao.classesCount() == 0) {
+                    try {
+                        var csvReader =
+                            CSVReader(InputStreamReader(res.openRawResource(R.raw.class_list)))
+
+                        var nextLine: Array<String> = csvReader.readNext()
+
+                        while (nextLine != null) {
+                            val newClass = ClassItem(
+                                nextLine.get(0),
+                                nextLine.get(1),
+                                nextLine.get(2),
+                                nextLine.get(3)
+                            )
+                            classItemDao.insertClass(newClass)
+                            Log.d(TAG, newClass.course_id.toString())
+                            nextLine = csvReader.readNext()
+                        }
+
+                    } catch (e: Exception) {
+                        Log.d(TAG, e.toString())
+                    }
                 }
             }
         }

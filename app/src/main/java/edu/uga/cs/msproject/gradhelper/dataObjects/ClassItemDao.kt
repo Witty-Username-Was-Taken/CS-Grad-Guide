@@ -17,4 +17,7 @@ interface ClassItemDao {
 
     @Query("Delete From classes")
     suspend fun deleteClasses()
+
+    @Query("SELECT COUNT(course_id) FROM classes")
+    suspend fun classesCount(): Int
 }

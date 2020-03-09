@@ -25,4 +25,9 @@ interface ProfessorDao {
     @Query("DELETE FROM professors_research")
     suspend fun deleteAllProfResearch()
 
+    @Query("SELECT COUNT(id) FROM professors")
+    suspend fun professorsCount(): Int
+
+    @Query("SELECT COUNT(id) FROM professors_research")
+    suspend fun profResearchCount(): Int
 }

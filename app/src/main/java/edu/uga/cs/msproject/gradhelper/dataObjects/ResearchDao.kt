@@ -20,4 +20,7 @@ interface ResearchDao {
 
     @Query("SELECT * FROM research_topics WHERE research_id = :id")
     suspend fun getResearchWithID(id: String) : Research
+
+    @Query("SELECT COUNT(research_id) FROM research_topics")
+    suspend fun researchCount(): Int
 }
