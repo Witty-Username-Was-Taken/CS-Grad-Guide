@@ -67,4 +67,17 @@
         android:name="edu.uga.cs.msproject.gradhelper.classList.ClassListFragment"
         android:label="Class List"
         tools:layout="@layout/fragment_class_list" />
+    <fragment
+        android:id="@+id/showInfoFragment"
+        android:name="edu.uga.cs.msproject.gradhelper.degreeTracker.ShowInfoFragment"
+        android:label="fragment_show_info"
+        tools:layout="@layout/fragment_show_info" >
+        <action
+            android:id="@+id/action_showInfoFragment_to_editInfoFragment"
+            app:destination="@id/editInfoFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/editInfoFragment"
+        android:name="edu.uga.cs.msproject.gradhelper.degreeTracker.EditInfoFragment"
+        android:label="EditInfoFragment" />
 </navigation>

@@ -15,7 +15,7 @@ import java.io.InputStreamReader
 import java.lang.Exception
 
 @Database(entities = arrayOf(Professor::class,Research::class,ProfessorResearchCrossRef::class,
-    ClassItem::class), version = 1, exportSchema = false)
+    ClassItem::class, ClassTaken::class), version = 1, exportSchema = false)
 abstract class ProfessorDatabase : RoomDatabase() {
 
     abstract fun professorDao() : ProfessorDao
@@ -60,22 +60,18 @@ abstract class ProfessorDatabase : RoomDatabase() {
                 super.onOpen(db)
                 INSTANCE?.let { database ->
                     scope.launch {
-                        populateDatabase(database.professorDao(), database.researchDao(), database.classItemDao(), res)
+                        populateDatabase(database.professorDao(), database.researchDao(),
+                            database.classItemDao(), res)
                     }
                 }
             }
 
-            suspend fun populateDatabase(professorDao: ProfessorDao, researchDao: ResearchDao, classItemDao: ClassItemDao, res: Resources) {
-
-                // Delete all content here
-//                professorDao.deleteAllProfResearch()
-//                professorDao.deleteAll()
-//                researchDao.deleteAll()
-//                classItemDao.deleteClasses()
+            suspend fun populateDatabase(professorDao: ProfessorDao, researchDao: ResearchDao,
+                                         classItemDao: ClassItemDao, res: Resources) {
 
                 System.out.println("ProfessorDatabase populateDatabase!")
 
-                // Create Professors table
+                // Populate Professors table
                 if (professorDao.professorsCount() == 0) {
                     try {
                         var csvReader =
@@ -110,7 +106,7 @@ abstract class ProfessorDatabase : RoomDatabase() {
                     System.out.println("Professor Count: " + professorDao.professorsCount())
                 }
 
-                // Create Research table
+                // Populate Research table
                 if (researchDao.researchCount() == 0) {
                     try {
                         var csvReader =
@@ -130,7 +126,7 @@ abstract class ProfessorDatabase : RoomDatabase() {
                     }
                 }
 
-                // Create ResearchProf table
+                // Populate ResearchProf table
                 if (professorDao.profResearchCount() == 0) {
                     try {
                         var csvReader =
@@ -151,7 +147,7 @@ abstract class ProfessorDatabase : RoomDatabase() {
                     }
                 }
 
-                // Create Classes table
+                // Populate Classes table
                 if (classItemDao.classesCount() == 0) {
                     try {
                         var csvReader =

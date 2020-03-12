@@ -3,17 +3,13 @@ package edu.uga.cs.msproject.gradhelper.facultyDirectory
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.NavController
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.navigateUp
-import androidx.navigation.ui.onNavDestinationSelected
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
@@ -80,8 +76,6 @@ ResearchDetailFragment.OnResearchDetailFragmentInteractionListener {
         val action = ResearchListFragmentDirections.actionResearchListFragmentToResearchDetailFragment(research)
 
         host.findNavController().navigate(action)
-
-
     }
 
     override fun onFacultyItemInteraction(professor: Professor) {

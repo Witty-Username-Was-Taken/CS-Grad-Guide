@@ -20,6 +20,8 @@
     <string name="semester_offered_title">Semester Offered:</string>
     <string name="semester_offered_content">Semesters Offered Placeholder</string>
     <string name="course_id_placeholder">Course ID:</string>
+    <string name="program_name">Program Name</string>
+    <string name="classes_taken_title">Classes Taken</string>
 
     <string-array name="location_types">
         <item>Restaurant</item>
