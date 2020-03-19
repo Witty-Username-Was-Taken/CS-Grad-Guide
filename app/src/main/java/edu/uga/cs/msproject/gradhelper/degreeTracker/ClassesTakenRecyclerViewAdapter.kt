@@ -28,7 +28,8 @@ class ClassesTakenRecyclerViewAdapter(editInfoViewModel: EditInfoViewModel): Rec
     }
 
     override fun onBindViewHolder(holder: EditInfoClassesTakenViewHolder, position: Int) {
-        holder.className.text = classesTaken.get(position).course_id
+        holder.className.text = "CSCI" + classesTaken.get(position).course_id + ": " +
+                classesTaken.get(position).className
 
         holder.removeButton.setOnClickListener{
             viewModel.removeClass(classesTaken.get(position))

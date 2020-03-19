@@ -35,10 +35,6 @@ class ProfessorRepository(private val professorDao: ProfessorDao,
         classItemDao.deleteClassTaken(classTaken)
     }
 
-    suspend fun getClassItem(id : String) : LiveData<ClassItem> {
-        return classItemDao.getClass(id)
-    }
-
     suspend fun getClassesNotTaken(classesTaken: List<ClassTaken>) : LiveData<List<ClassItem>> {
         return classItemDao.getClassesNotTaken()
     }

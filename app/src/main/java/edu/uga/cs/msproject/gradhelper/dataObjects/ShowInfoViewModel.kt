@@ -12,7 +12,6 @@ class ShowInfoViewModel(application: Application): AndroidViewModel(application)
     private val repository: ProfessorRepository
 
     val allClassesTaken : LiveData<List<ClassTaken>>
-    lateinit var classItem : LiveData<ClassItem>
 
     init {
         val professorDao = ProfessorDatabase.getDatabase(application, viewModelScope).professorDao()
@@ -20,11 +19,5 @@ class ShowInfoViewModel(application: Application): AndroidViewModel(application)
         val classItemDao = ProfessorDatabase.getDatabase(application, viewModelScope).classItemDao()
         repository = ProfessorRepository(professorDao,researchDao,classItemDao)
         allClassesTaken = repository.allClassesTaken
-    }
-
-    fun getClassItem(id : String)  {
-        GlobalScope.launch {
-            classItem = repository.getClassItem(id)
-        }
     }
 }

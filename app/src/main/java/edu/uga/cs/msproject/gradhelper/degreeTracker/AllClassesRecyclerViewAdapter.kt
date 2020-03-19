@@ -28,7 +28,8 @@ class AllClassesRecyclerViewAdapter(editInfoViewModel: EditInfoViewModel) : Recy
     }
 
     override fun onBindViewHolder(holder: EditInfoAllClassesViewHolder, position: Int) {
-        holder.className.text = allClasses.get(position).course_name
+        holder.className.text = "CSCI" + allClasses.get(position).course_id + ": " +
+                allClasses.get(position).course_name
         holder.addButton.setOnClickListener{
             viewModel.addNewClassTaken(allClasses.get(position))
         }

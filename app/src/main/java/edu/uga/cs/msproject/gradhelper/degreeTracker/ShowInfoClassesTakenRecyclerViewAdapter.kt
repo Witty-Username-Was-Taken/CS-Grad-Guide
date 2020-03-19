@@ -24,8 +24,8 @@ class ShowInfoClassesTakenRecyclerViewAdapter : RecyclerView.Adapter<ShowInfoCla
     }
 
     override fun onBindViewHolder(holder: ShowInfoClassesTakenViewHolder, position: Int) {
-        holder.courseId.text = classesTaken.get(position).course_id
-        holder.courseName.text = classesTaken.get(position).className
+        holder.courseName.text = "CSCI" + classesTaken.get(position).course_id + ": " +
+                classesTaken.get(position).className
     }
 
     internal fun setClassesTaken(classesTaken: List<ClassTaken>) {

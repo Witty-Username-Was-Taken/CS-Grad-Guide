@@ -22,6 +22,7 @@
     <string name="course_id_placeholder">Course ID:</string>
     <string name="program_name">Program Name</string>
     <string name="classes_taken_title">Classes Taken</string>
+    <string name="edit_button">Edit</string>
 
     <string-array name="location_types">
         <item>Restaurant</item>

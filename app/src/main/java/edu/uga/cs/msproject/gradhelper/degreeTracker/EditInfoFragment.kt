@@ -1,12 +1,18 @@
 package edu.uga.cs.msproject.gradhelper.degreeTracker
 
 import android.content.Context
+import android.content.SharedPreferences
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
+import android.widget.Spinner
+import androidx.core.content.edit
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -21,12 +27,18 @@ import edu.uga.cs.msproject.gradhelper.dataObjects.EditInfoViewModel
  * [EditInfoFragment.OnFragmentInteractionListener] interface
  * to handle interaction events.
  */
-class EditInfoFragment : Fragment() {
+class EditInfoFragment : Fragment(), AdapterView.OnItemSelectedListener {
+
+    companion object {
+        private val TAG = "EDIT_INFO"
+    }
 
     private lateinit var editInfoViewModel: EditInfoViewModel
+    lateinit var degreeProgramSpinner : Spinner
     lateinit var classesTakenRecyclerView: RecyclerView
     lateinit var allClassesRecyclerView: RecyclerView
     private var listener: OnFragmentInteractionListener? = null
+    private lateinit var preferences : SharedPreferences
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -58,12 +70,21 @@ class EditInfoFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
+        preferences = this.activity!!.getPreferences(Context.MODE_PRIVATE)
+
         editInfoViewModel = ViewModelProvider(this).get(EditInfoViewModel::class.java)
+
+        val degreeProgram = preferences?.getInt("degree_program",0) ?: 0
+        val classesTakenAdapter = ClassesTakenRecyclerViewAdapter(editInfoViewModel)
+        val allClassesAdapter = AllClassesRecyclerViewAdapter(editInfoViewModel)
+
+        degreeProgramSpinner = view!!.findViewById(R.id.degree_objective)
+        degreeProgramSpinner.setSelection(degreeProgram,false)
+
+        degreeProgramSpinner.onItemSelectedListener = this
 
         classesTakenRecyclerView = view!!.findViewById(R.id.classes_taken)
         allClassesRecyclerView = view!!.findViewById(R.id.all_classes)
-        val classesTakenAdapter = ClassesTakenRecyclerViewAdapter(editInfoViewModel)
-        val allClassesAdapter = AllClassesRecyclerViewAdapter(editInfoViewModel)
 
         classesTakenRecyclerView.adapter = classesTakenAdapter
         classesTakenRecyclerView.layoutManager = LinearLayoutManager(activity)
@@ -79,6 +100,7 @@ class EditInfoFragment : Fragment() {
             allClasessTaken?.let{
                 classesTakenAdapter.setClassesTaken(allClasessTaken)
             }
+
         })
     }
 
@@ -96,6 +118,19 @@ class EditInfoFragment : Fragment() {
     interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         fun onFragmentInteraction(uri: Uri)
+    }
+
+    override fun onNothingSelected(p0: AdapterView<*>?) {
+        TODO("Not yet implemented")
+    }
+
+    override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
+        Log.d(TAG, "Item Selected: " + p3)
+        preferences?.edit {
+            putInt("degree_program", p2)
+            Log.d(TAG, "putInt Used")
+            commit()
+        }
     }
 
 }
