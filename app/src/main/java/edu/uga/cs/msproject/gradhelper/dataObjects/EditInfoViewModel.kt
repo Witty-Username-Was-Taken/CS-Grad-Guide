@@ -24,7 +24,7 @@ class EditInfoViewModel(application: Application) : AndroidViewModel(application
     }
 
     internal fun addNewClassTaken(newClass: ClassItem) {
-        val newClassTaken = ClassTaken(newClass.course_id, newClass.course_name)
+        val newClassTaken = ClassTaken(newClass.course_id, newClass.course_name, newClass.requirementSatisfied)
         // Use coroutine to execute database update
         GlobalScope.launch {
             repository.insertClassTaken(newClassTaken)

@@ -8,5 +8,6 @@ data class ClassItem(
     @PrimaryKey val course_id : String,
     val course_name : String,
     val description : String,
-    val semesterOffered : String) {
+    val semesterOffered : String,
+    val requirementSatisfied : String) {
 }

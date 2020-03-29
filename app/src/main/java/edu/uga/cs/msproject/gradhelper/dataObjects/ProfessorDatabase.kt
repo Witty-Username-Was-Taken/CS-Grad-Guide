@@ -160,7 +160,8 @@ abstract class ProfessorDatabase : RoomDatabase() {
                                 nextLine.get(0),
                                 nextLine.get(1),
                                 nextLine.get(2),
-                                nextLine.get(3)
+                                nextLine.get(3),
+                                nextLine.get(4)
                             )
                             classItemDao.insertClass(newClass)
                             Log.d(TAG, newClass.course_id.toString())

@@ -152,7 +152,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
-            android:text="@string/reserach_focus_title"
+            android:text="@string/research_focus_title"
             android:textColor="#000000"
             android:textSize="18sp"
             android:textStyle="bold"

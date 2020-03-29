@@ -6,5 +6,6 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "classes_taken")
 class ClassTaken(
     @PrimaryKey val course_id : String,
-    val className : String) {
+    val className : String,
+    val courseRequirement : String) {
 }

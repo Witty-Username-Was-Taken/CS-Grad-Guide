@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toolbar
 import androidx.lifecycle.Observer
@@ -25,6 +26,8 @@ class ShowInfoFragment : Fragment() {
 
     private lateinit var showInfoViewModel: ShowInfoViewModel
     lateinit var classesTakenRecyclerView : RecyclerView
+    private val coreAreas = listOf<String>("Theory","System Design","Software Design")
+
     lateinit var toolbarEdit : TextView
 
 
@@ -70,9 +73,25 @@ class ShowInfoFragment : Fragment() {
         classesTakenRecyclerView.adapter = adapter
         classesTakenRecyclerView.layoutManager = LinearLayoutManager(activity)
 
+        val coreStatus = mapOf("Theory" to R.id.theory_req_imageview,
+            "Software Design" to R.id.software_design_req_imageview,
+            "System Design" to R.id.system_design_req_imageview)
+
         showInfoViewModel.allClassesTaken.observe(this.viewLifecycleOwner, Observer { classesTaken ->
             classesTaken?.let {
                 adapter.setClassesTaken(classesTaken)
+                coreAreas.forEach { core ->
+                    System.out.println("Core: " + core)
+                    if (classesTaken?.stream().filter { classTaken ->
+                            classTaken.courseRequirement == core
+                        }.findFirst().isPresent) {
+                        // Set Checkmark by core item
+                        System.out.println("Found core!")
+                        val image = activity?.findViewById<ImageView>(coreStatus[core]!!)
+                        image?.setImageResource(android.R.drawable.checkbox_on_background)
+                    }
+                }
+
             }
         })
     }

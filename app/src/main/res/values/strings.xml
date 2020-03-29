@@ -8,7 +8,7 @@
     <string name="office_placeholder">Office Placeholder</string>
     <string name="website_title">Website:</string>
     <string name="website_placeholder">Website Placeholder</string>
-    <string name="reserach_focus_title">Research Focus:</string>
+    <string name="research_focus_title">Research Focus:</string>
     <string name="research_placeholder">Research Placeholder</string>
     <string name="directions_button">Directions</string>
     <string name="directions_disclaimer">*to Building</string>
@@ -23,6 +23,22 @@
     <string name="program_name">Program Name</string>
     <string name="classes_taken_title">Classes Taken</string>
     <string name="edit_button">Edit</string>
+    <string name="degree_program">Degree Program</string>
+    <string name="remaining_classes">Remaining Classes</string>
+    <string name="degree_requirements_title">Degree Requirements Met:</string>
+    <string name="theory">Theory</string>
+    <string name="system_design">System Design</string>
+    <string name="software_design">Software Design</string>
+    <string name="core_requirements">Core Requirements</string>
+    <string name="additional_requirements">Additional Requirements</string>
+    <string name="advanced_coursework">Advanced Coursework</string>
+    <string name="masters_project">CSCI 7200</string>
+    <string name="research_seminar">CSCI 8990</string>
+    <string name="masters_research">CSCI 7000</string>
+    <string name="masters_thesis">CSCI 7300</string>
+    <string name="additional_coursework">Addition Coursework (6 hours)</string>
+    <string name="doctoral_dissertation">CSCI 9300 (9 hours)</string>
+
 
     <string-array name="location_types">
         <item>Restaurant</item>
