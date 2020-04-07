@@ -70,7 +70,7 @@
     <fragment
         android:id="@+id/showInfoFragment"
         android:name="edu.uga.cs.msproject.gradhelper.degreeTracker.ShowInfoFragment"
-        android:label="fragment_show_info"
+        android:label="Degree Tracker"
         tools:layout="@layout/fragment_show_info" >
         <action
             android:id="@+id/action_showInfoFragment_to_editInfoFragment"
@@ -79,5 +79,5 @@
     <fragment
         android:id="@+id/editInfoFragment"
         android:name="edu.uga.cs.msproject.gradhelper.degreeTracker.EditInfoFragment"
-        android:label="EditInfoFragment" />
+        android:label="Edit Degree Info" />
 </navigation>

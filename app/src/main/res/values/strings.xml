@@ -38,6 +38,13 @@
     <string name="masters_thesis">CSCI 7300</string>
     <string name="additional_coursework">Addition Coursework (6 hours)</string>
     <string name="doctoral_dissertation">CSCI 9300 (9 hours)</string>
+    <string name="masters_thesis_req">Masters Thesis</string>
+    <string name="masters_project_req">Masters Project</string>
+    <string name="masters_research_req">Masters Research</string>
+    <string name="research_seminar_req">Research Seminar</string>
+    <string name="doctoral_dissertation_req">Dissertation</string>
+    <string name="additional_concentration_req">Additional Concentration</string>
+    <string name="additional_req_placeholder">Additional Requirement</string>
 
 
     <string-array name="location_types">

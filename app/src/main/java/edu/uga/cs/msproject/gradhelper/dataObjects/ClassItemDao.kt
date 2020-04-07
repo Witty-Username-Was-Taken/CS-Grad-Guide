@@ -34,6 +34,9 @@ interface ClassItemDao {
     @Query("SELECT classes.* FROM classes LEFT JOIN classes_taken ON classes.course_id = classes_taken.course_id WHERE classes_taken.course_id IS NULL")
     fun getClassesNotTaken() : LiveData<List<ClassItem>>
 
+    @Query("SELECT * FROM classes_taken WHERE courseRequirement = '8000 Level'")
+    fun getAdvancedCourseworkTaken() : LiveData<List<ClassTaken>>
+
     /**
      * Insert function to add a new ClassItem to the 'classes' table
      * @param   classItem   ClassItem to be inserted

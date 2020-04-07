@@ -12,6 +12,7 @@ class ProfessorRepository(private val professorDao: ProfessorDao,
     val allClasses : LiveData<List<ClassItem>> = classItemDao.getClasses()
     val allClassesTaken : LiveData<List<ClassTaken>> = classItemDao.getClassesTaken()
     val classesNotTaken : LiveData<List<ClassItem>> = classItemDao.getClassesNotTaken()
+    val advancedCourseworkTaken : LiveData<List<ClassTaken>> = classItemDao.getAdvancedCourseworkTaken()
 
     lateinit var researchProfessors : List<Professor>
 
@@ -34,9 +35,4 @@ class ProfessorRepository(private val professorDao: ProfessorDao,
     suspend fun deleteClassTaken(classTaken: ClassTaken) {
         classItemDao.deleteClassTaken(classTaken)
     }
-
-    suspend fun getClassesNotTaken(classesTaken: List<ClassTaken>) : LiveData<List<ClassItem>> {
-        return classItemDao.getClassesNotTaken()
-    }
-
 }

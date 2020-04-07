@@ -12,6 +12,9 @@ class ShowInfoViewModel(application: Application): AndroidViewModel(application)
     private val repository: ProfessorRepository
 
     val allClassesTaken : LiveData<List<ClassTaken>>
+    val advancedCourseworkTaken : LiveData<List<ClassTaken>>
+    val researchSeminarTaken : LiveData<List<ClassTaken>>
+    val mastersProjectTaken : LiveData<List<ClassTaken>>
 
     init {
         val professorDao = ProfessorDatabase.getDatabase(application, viewModelScope).professorDao()
@@ -19,5 +22,6 @@ class ShowInfoViewModel(application: Application): AndroidViewModel(application)
         val classItemDao = ProfessorDatabase.getDatabase(application, viewModelScope).classItemDao()
         repository = ProfessorRepository(professorDao,researchDao,classItemDao)
         allClassesTaken = repository.allClassesTaken
+        advancedCourseworkTaken = repository.advancedCourseworkTaken
     }
 }

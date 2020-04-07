@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".degreeTracker.ShowInfoFragment" >
+    tools:context=".degreeTracker.ShowInfoFragment">
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
     <TextView
         android:id="@+id/program_name"
@@ -119,7 +123,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/theory_textview"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/theory_textview"
-        app:srcCompat="@android:drawable/ic_delete" />
+        app:srcCompat="@drawable/cross_sign" />
 
     <ImageView
         android:id="@+id/system_design_req_imageview"
@@ -129,7 +133,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/system_design_textview"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/system_design_textview"
-        app:srcCompat="@android:drawable/ic_delete" />
+        app:srcCompat="@drawable/cross_sign" />
 
     <ImageView
         android:id="@+id/software_design_req_imageview"
@@ -139,7 +143,47 @@
         app:layout_constraintBottom_toBottomOf="@+id/software_design_textview"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/software_design_textview"
-        app:srcCompat="@android:drawable/ic_delete" />
+        app:srcCompat="@drawable/cross_sign" />
+
+    <ImageView
+        android:id="@+id/additional_req_imageview"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginEnd="24dp"
+        app:layout_constraintBottom_toBottomOf="@+id/advanced_coursework_textview"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/advanced_coursework_textview"
+        app:srcCompat="@drawable/cross_sign" />
+
+    <ImageView
+        android:id="@+id/additional_req_imageview2"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginEnd="24dp"
+        app:layout_constraintBottom_toBottomOf="@+id/additional_req_textview"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/additional_req_textview"
+        app:srcCompat="@drawable/cross_sign" />
+
+    <ImageView
+        android:id="@+id/additional_req_imageview3"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginEnd="24dp"
+        app:layout_constraintBottom_toBottomOf="@+id/additional_req_textview2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/additional_req_textview2"
+        app:srcCompat="@drawable/cross_sign" />
+
+    <ImageView
+        android:id="@+id/additional_req_imageview4"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginEnd="24dp"
+        app:layout_constraintBottom_toBottomOf="@+id/additional_req_textview3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/additional_req_textview3"
+        app:srcCompat="@drawable/cross_sign" />
 
     <TextView
         android:id="@+id/additional_requirements_textview"
@@ -163,4 +207,36 @@
         android:text="@string/advanced_coursework"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/additional_requirements_textview" />
+
+    <TextView
+        android:id="@+id/additional_req_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/additional_req_placeholder"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/advanced_coursework_textview" />
+
+    <TextView
+        android:id="@+id/additional_req_textview2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/additional_req_placeholder"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/additional_req_textview" />
+
+    <TextView
+        android:id="@+id/additional_req_textview3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/additional_req_placeholder"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/additional_req_textview2" />
 </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>
