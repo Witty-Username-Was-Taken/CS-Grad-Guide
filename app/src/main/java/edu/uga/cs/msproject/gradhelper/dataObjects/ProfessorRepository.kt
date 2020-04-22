@@ -13,6 +13,13 @@ class ProfessorRepository(private val professorDao: ProfessorDao,
     val allClassesTaken : LiveData<List<ClassTaken>> = classItemDao.getClassesTaken()
     val classesNotTaken : LiveData<List<ClassItem>> = classItemDao.getClassesNotTaken()
     val advancedCourseworkTaken : LiveData<List<ClassTaken>> = classItemDao.getAdvancedCourseworkTaken()
+    val sixThousandLevelTaken : LiveData<List<ClassTaken>> = classItemDao.getSixThousandLevelTaken()
+    val eightThousandLevelTaken : LiveData<List<ClassTaken>> = classItemDao.getEightThousandLevelTaken()
+    val researchSeminarTaken : LiveData<Int> = classItemDao.getResearchSeminarTaken()
+    val mastersProjectTaken : LiveData<Int> = classItemDao.getMastersProjectTaken()
+    val mastersResearchTaken : LiveData<Int> = classItemDao.getMastersResearchTaken()
+    val mastersThesisTaken : LiveData<Int> = classItemDao.getMastersThesisTaken()
+    val dissertationTaken : LiveData<Int> = classItemDao.getDoctoralDissertationTaken()
 
     lateinit var researchProfessors : List<Professor>
 
