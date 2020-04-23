@@ -42,13 +42,13 @@ ResearchDetailFragment.OnResearchDetailFragmentInteractionListener {
 
         val appBarConfiguration = AppBarConfiguration(navController.graph, drawerLayout)
 
-        findViewById<NavigationView>(R.id.nav_view)
-            .setupWithNavController(navController)
-
-        findViewById<Toolbar>(R.id.toolbar)
-            .setupWithNavController(navController,appBarConfiguration)
-
-        setupBottomNavMenu(navController)
+//        findViewById<NavigationView>(R.id.nav_view)
+//            .setupWithNavController(navController)
+//
+//        findViewById<Toolbar>(R.id.toolbar)
+//            .setupWithNavController(navController,appBarConfiguration)
+//
+//        setupBottomNavMenu(navController)
 
     }
 
@@ -86,10 +86,10 @@ ResearchDetailFragment.OnResearchDetailFragmentInteractionListener {
         host.findNavController().navigate(action)
     }
 
-    private fun setupBottomNavMenu(navController: NavController) {
-        val bottomNav = findViewById<BottomNavigationView>(R.id.bottom_nav)
-        bottomNav?.setupWithNavController(navController)
-    }
+//    private fun setupBottomNavMenu(navController: NavController) {
+//        val bottomNav = findViewById<BottomNavigationView>(R.id.bottom_nav)
+//        bottomNav?.setupWithNavController(navController)
+//    }
 
     companion object {
         const val INTENT_PROF_KEY = "prof"

@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/directoryListFragment">
+    app:startDestination="@id/homeFragment">
 
     <activity
         android:id="@+id/directoryListActivity"
@@ -80,4 +80,24 @@
         android:id="@+id/editInfoFragment"
         android:name="edu.uga.cs.msproject.gradhelper.degreeTracker.EditInfoFragment"
         android:label="Edit Degree Info" />
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="edu.uga.cs.msproject.gradhelper.HomeFragment"
+        android:label="HomeFragment" >
+        <action
+            android:id="@+id/action_homeFragment_to_locationListFragment"
+            app:destination="@id/locationListFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_directoryListFragment"
+            app:destination="@id/directoryListFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_researchListFragment"
+            app:destination="@id/researchListFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_classListFragment"
+            app:destination="@id/classListFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_showInfoFragment"
+            app:destination="@id/showInfoFragment" />
+    </fragment>
 </navigation>
