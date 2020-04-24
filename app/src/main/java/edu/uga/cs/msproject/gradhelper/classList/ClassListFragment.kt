@@ -1,7 +1,6 @@
 package edu.uga.cs.msproject.gradhelper.classList
 
 import android.content.Context
-import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -13,19 +12,24 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
 import edu.uga.cs.msproject.gradhelper.R
+import edu.uga.cs.msproject.gradhelper.dataObjects.ClassItem
 import edu.uga.cs.msproject.gradhelper.dataObjects.ClassListViewModel
 
-/**
- * A simple [Fragment] subclass.
- * Activities that contain this fragment must implement the
- * [ClassListFragment.OnResearchListFragmentInteractionListener] interface
- * to handle interaction events.
- */
-class ClassListFragment : Fragment() {
+class ClassListFragment : Fragment(),
+ClassListRecyclerViewAdapter.ClassSelectionRecyclerViewClickListener {
 
     lateinit var classListRecyclerView: RecyclerView
     private lateinit var classListViewModel: ClassListViewModel
-    private var listenerResearchList: OnResearchListFragmentInteractionListener? = null
+    private var listener : OnClassListInteractionListener? = null
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        if (context is OnClassListInteractionListener) {
+            listener = context
+        } else {
+            throw RuntimeException(context.toString() + " must implement OnFragmentInteractionListener")
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -35,30 +39,11 @@ class ClassListFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_class_list, container, false)
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
-    fun onButtonPressed(uri: Uri) {
-        listenerResearchList?.onFragmentInteraction(uri)
-    }
-
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-//        if (context is OnResearchListFragmentInteractionListener) {
-//            listenerResearchList = context
-//        } else {
-//            throw RuntimeException(context.toString() + " must implement OnFragmentInteractionListener")
-//        }
-    }
-
-//    override fun onDetach() {
-//        super.onDetach()
-//        listenerResearchList = null
-//    }
-
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
         classListRecyclerView = view!!.findViewById(R.id.class_list_recycler_view)
-        val adapter = ClassListRecyclerViewAdapter()
+        val adapter = ClassListRecyclerViewAdapter(this)
 
         classListRecyclerView.adapter = adapter
         classListRecyclerView.layoutManager = LinearLayoutManager(activity)
@@ -81,9 +66,13 @@ class ClassListFragment : Fragment() {
      * (http://developer.android.com/training/basics/fragments/communicating.html)
      * for more information.
      */
-    interface OnResearchListFragmentInteractionListener {
+    interface OnClassListInteractionListener {
         // TODO: Update argument type and name
-        fun onFragmentInteraction(uri: Uri)
+        fun onClassListInteraction(classItem: ClassItem)
+    }
+
+    override fun classListItemClicked(classItem: ClassItem) {
+        listener?.onClassListInteraction(classItem)
     }
 
 }

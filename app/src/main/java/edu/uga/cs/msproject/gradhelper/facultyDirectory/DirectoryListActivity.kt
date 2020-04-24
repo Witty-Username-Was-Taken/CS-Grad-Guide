@@ -6,14 +6,15 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.drawerlayout.widget.DrawerLayout
-import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupWithNavController
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
 import edu.uga.cs.msproject.gradhelper.R
+import edu.uga.cs.msproject.gradhelper.classList.ClassListFragment
+import edu.uga.cs.msproject.gradhelper.classList.ClassListFragmentDirections
+import edu.uga.cs.msproject.gradhelper.dataObjects.ClassItem
 import edu.uga.cs.msproject.gradhelper.dataObjects.Professor
 import edu.uga.cs.msproject.gradhelper.dataObjects.Research
 import edu.uga.cs.msproject.gradhelper.locationFinder.LocationListFragment
@@ -26,7 +27,8 @@ class DirectoryListActivity : AppCompatActivity(),
 DirectoryListFragment.OnDirectoryItemFragmentInteractionListener,
 LocationListFragment.OnLocationListListener,
 ResearchListFragment.ResearchItemInteractionListener,
-ResearchDetailFragment.OnResearchDetailFragmentInteractionListener {
+ResearchDetailFragment.OnResearchDetailFragmentInteractionListener,
+ClassListFragment.OnClassListInteractionListener {
 
 //    private var directoryListFragment : NavHostFragment? = null
 
@@ -39,14 +41,13 @@ ResearchDetailFragment.OnResearchDetailFragmentInteractionListener {
 
         val navController = host.navController
         val drawerLayout = findViewById<DrawerLayout>(R.id.drawerLayout)
-
         val appBarConfiguration = AppBarConfiguration(navController.graph, drawerLayout)
 
-//        findViewById<NavigationView>(R.id.nav_view)
-//            .setupWithNavController(navController)
-//
-//        findViewById<Toolbar>(R.id.toolbar)
-//            .setupWithNavController(navController,appBarConfiguration)
+        findViewById<NavigationView>(R.id.nav_view)
+            .setupWithNavController(navController)
+
+        findViewById<Toolbar>(R.id.toolbar)
+            .setupWithNavController(navController,appBarConfiguration)
 //
 //        setupBottomNavMenu(navController)
 
@@ -82,6 +83,14 @@ ResearchDetailFragment.OnResearchDetailFragmentInteractionListener {
         val host = supportFragmentManager.findFragmentById(R.id.nav_host) as NavHostFragment ?: return
 
         val action = ResearchDetailFragmentDirections.actionResearchDetailFragmentToFacultyDetailFragment(professor)
+
+        host.findNavController().navigate(action)
+    }
+
+    override fun onClassListInteraction(classItem: ClassItem) {
+        val host = supportFragmentManager.findFragmentById(R.id.nav_host) as NavHostFragment ?: return
+
+        val action = ClassListFragmentDirections.actionClassListFragmentToClassDetailFragment(classItem)
 
         host.findNavController().navigate(action)
     }

@@ -29,10 +29,6 @@ DirectoryListRecyclerViewAdapter.DirectorySelectionRecyclerViewClickListener {
     private lateinit var professorListViewModel: ProfessorListViewModel
     private var listener : OnDirectoryItemFragmentInteractionListener? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
-
     override fun onAttach(context: Context) {
         super.onAttach(context)
         if (context is OnDirectoryItemFragmentInteractionListener) {

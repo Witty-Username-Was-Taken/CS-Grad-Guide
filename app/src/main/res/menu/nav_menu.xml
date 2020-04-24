@@ -3,23 +3,23 @@
     <group android:id="@+id/primary">
         <item
             android:id="@id/locationListFragment"
-            android:icon="@android:drawable/ic_menu_add"
+            android:icon="@drawable/locations"
             android:title="Locations" />
         <item
             android:id="@id/directoryListFragment"
-            android:icon="@android:drawable/btn_star"
+            android:icon="@drawable/faculty"
             android:title="Directory" />
         <item
             android:id="@id/researchListFragment"
-            android:icon="@android:drawable/btn_minus"
+            android:icon="@drawable/research"
             android:title="Research"/>
         <item
             android:id="@id/classListFragment"
-            android:icon="@android:drawable/ic_btn_speak_now"
+            android:icon="@drawable/classlist"
             android:title="Class List" />
         <item
             android:id="@id/showInfoFragment"
-            android:icon="@android:drawable/btn_default"
+            android:icon="@drawable/gradtracker"
             android:title="Degree Tracker" />
     </group>
 

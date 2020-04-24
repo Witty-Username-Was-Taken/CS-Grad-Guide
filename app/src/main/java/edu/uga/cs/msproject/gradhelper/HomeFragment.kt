@@ -53,7 +53,7 @@ class HomeFragment : Fragment() {
         }
 
         degreeTrackerImage.setOnClickListener {
-            navController.navigate(R.id.editInfoFragment)
+            navController.navigate(R.id.showInfoFragment)
         }
     }
 }

@@ -46,6 +46,12 @@
     <string name="additional_concentration_req">Additional Concentration</string>
     <string name="additional_req_placeholder">Additional Requirement</string>
 
+    <string name="locations_text">Locations</string>
+    <string name="degree_tracker_text">Degree Tracker</string>
+    <string name="directory_text">Faculty Directory</string>
+    <string name="class_list_text">Class List</string>
+    <string name="research_list_text">Research Topics</string>
+
 
     <string-array name="location_types">
         <item>Restaurant</item>

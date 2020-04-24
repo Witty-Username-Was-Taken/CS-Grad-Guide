@@ -66,7 +66,11 @@
         android:id="@+id/classListFragment"
         android:name="edu.uga.cs.msproject.gradhelper.classList.ClassListFragment"
         android:label="Class List"
-        tools:layout="@layout/fragment_class_list" />
+        tools:layout="@layout/fragment_class_list" >
+        <action
+            android:id="@+id/action_classListFragment_to_classDetailFragment"
+            app:destination="@id/classDetailFragment" />
+    </fragment>
     <fragment
         android:id="@+id/showInfoFragment"
         android:name="edu.uga.cs.msproject.gradhelper.degreeTracker.ShowInfoFragment"
@@ -99,5 +103,16 @@
         <action
             android:id="@+id/action_homeFragment_to_showInfoFragment"
             app:destination="@id/showInfoFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/classDetailFragment"
+        android:name="edu.uga.cs.msproject.gradhelper.classList.ClassDetailFragment"
+        android:label="fragment_class_item_detail"
+        tools:layout="@layout/fragment_class_item_detail" >
+    <argument
+        android:name="class_info"
+        app:argType="edu.uga.cs.msproject.gradhelper.dataObjects.ClassItem"
+        app:nullable="true"
+        android:defaultValue="@null" />
     </fragment>
 </navigation>
