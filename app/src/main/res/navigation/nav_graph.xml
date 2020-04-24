@@ -87,7 +87,7 @@
     <fragment
         android:id="@+id/homeFragment"
         android:name="edu.uga.cs.msproject.gradhelper.HomeFragment"
-        android:label="HomeFragment" >
+        android:label="CS Grad Guide" >
         <action
             android:id="@+id/action_homeFragment_to_locationListFragment"
             app:destination="@id/locationListFragment" />
@@ -107,7 +107,7 @@
     <fragment
         android:id="@+id/classDetailFragment"
         android:name="edu.uga.cs.msproject.gradhelper.classList.ClassDetailFragment"
-        android:label="fragment_class_item_detail"
+        android:label="Class Detail"
         tools:layout="@layout/fragment_class_item_detail" >
     <argument
         android:name="class_info"
