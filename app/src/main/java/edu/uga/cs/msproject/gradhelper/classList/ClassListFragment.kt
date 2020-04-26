@@ -15,7 +15,6 @@ import androidx.recyclerview.widget.RecyclerView
 import edu.uga.cs.msproject.gradhelper.R
 import edu.uga.cs.msproject.gradhelper.dataObjects.ClassItem
 import edu.uga.cs.msproject.gradhelper.dataObjects.ClassListViewModel
-import kotlinx.android.synthetic.main.activity_main.*
 
 class ClassListFragment : Fragment(),
 ClassListRecyclerViewAdapter.ClassSelectionRecyclerViewClickListener {
@@ -53,7 +52,7 @@ ClassListRecyclerViewAdapter.ClassSelectionRecyclerViewClickListener {
         classListRecyclerView.layoutManager = LinearLayoutManager(activity)
 
         classListViewModel = ViewModelProvider(this).get(ClassListViewModel::class.java)
-        classListSearchView.setOnQueryTextListener(QueryTextListener(this, adapter))
+        classListSearchView.setOnQueryTextListener(ClassListQueryTextListener(this, adapter))
         classListSearchView.setOnCloseListener(SearchViewCloseListener(classListSearchView))
 
         classListViewModel.allClasses.observe(this.viewLifecycleOwner, Observer { classes ->
@@ -81,7 +80,7 @@ ClassListRecyclerViewAdapter.ClassSelectionRecyclerViewClickListener {
         listener?.onClassListInteraction(classItem)
     }
 
-    inner class QueryTextListener(fragment: Fragment, adapter: ClassListRecyclerViewAdapter) : SearchView.OnQueryTextListener {
+    inner class ClassListQueryTextListener(fragment: Fragment, adapter: ClassListRecyclerViewAdapter) : SearchView.OnQueryTextListener {
 
         val recyclerAdapter = adapter
         val localFragment = fragment

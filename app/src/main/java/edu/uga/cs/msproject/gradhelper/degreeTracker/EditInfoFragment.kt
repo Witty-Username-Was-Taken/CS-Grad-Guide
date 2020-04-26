@@ -11,6 +11,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.SearchView
 import android.widget.Spinner
 import androidx.core.content.edit
 import androidx.lifecycle.Observer
@@ -20,6 +21,7 @@ import androidx.recyclerview.widget.RecyclerView
 
 import edu.uga.cs.msproject.gradhelper.R
 import edu.uga.cs.msproject.gradhelper.dataObjects.EditInfoViewModel
+import kotlinx.android.synthetic.main.activity_main.*
 
 /**
  * A simple [Fragment] subclass.
@@ -35,9 +37,11 @@ class EditInfoFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
     private lateinit var editInfoViewModel: EditInfoViewModel
     lateinit var degreeProgramSpinner : Spinner
-    lateinit var classesTakenRecyclerView: RecyclerView
-    lateinit var allClassesRecyclerView: RecyclerView
-    private var listener: OnFragmentInteractionListener? = null
+    lateinit var classesTakenRecyclerView : RecyclerView
+    lateinit var allClassesRecyclerView : RecyclerView
+    lateinit var classesTakenSearchView : SearchView
+    lateinit var allClassesSearchView : SearchView
+    private var listener : OnFragmentInteractionListener? = null
     private lateinit var preferences : SharedPreferences
 
     override fun onCreateView(
@@ -51,15 +55,6 @@ class EditInfoFragment : Fragment(), AdapterView.OnItemSelectedListener {
     // TODO: Rename method, update argument and hook method into UI event
     fun onButtonPressed(uri: Uri) {
         listener?.onFragmentInteraction(uri)
-    }
-
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-//        if (context is OnFragmentInteractionListener) {
-//            listener = context
-//        } else {
-//            throw RuntimeException(context.toString() + " must implement OnFragmentInteractionListener")
-//        }
     }
 
     override fun onDetach() {
@@ -90,6 +85,14 @@ class EditInfoFragment : Fragment(), AdapterView.OnItemSelectedListener {
         classesTakenRecyclerView.layoutManager = LinearLayoutManager(activity)
         allClassesRecyclerView.adapter = allClassesAdapter
         allClassesRecyclerView.layoutManager = LinearLayoutManager(activity)
+
+        classesTakenSearchView = view!!.findViewById(R.id.classes_taken_searchview)
+        classesTakenSearchView.setOnQueryTextListener(ClassesTakenQueryListener(this, classesTakenAdapter))
+        classesTakenSearchView.setOnCloseListener(ClassesSearchViewCloseListener(classesTakenSearchView))
+
+        allClassesSearchView = view!!.findViewById(R.id.remaining_classes_searchview)
+        allClassesSearchView.setOnQueryTextListener(RemainingClassesQueryListener(this, allClassesAdapter))
+        allClassesSearchView.setOnCloseListener(ClassesSearchViewCloseListener(allClassesSearchView))
 
         editInfoViewModel.classesNotTaken.observe(this.viewLifecycleOwner, Observer { allClasses ->
             allClasses?.let {
@@ -130,6 +133,51 @@ class EditInfoFragment : Fragment(), AdapterView.OnItemSelectedListener {
             putInt("degree_program", p2)
             Log.d(TAG, "putInt Used")
             commit()
+        }
+    }
+
+    inner class ClassesTakenQueryListener(fragment: Fragment, adapter: ClassesTakenRecyclerViewAdapter) :
+        SearchView.OnQueryTextListener {
+
+        val hostFragment = fragment
+        val classesTakenAdapter = adapter
+
+        override fun onQueryTextSubmit(p0: String?): Boolean {
+            return true
+        }
+
+        override fun onQueryTextChange(query: String?): Boolean {
+            editInfoViewModel.allClassesTaken.observe(hostFragment.viewLifecycleOwner, Observer { classesTaken ->
+                classesTaken?.let { classesTakenAdapter.setClassesTaken(classesTaken.filter { it.className.contains(query ?: "") }) }
+            })
+            return true
+        }
+    }
+
+    inner class RemainingClassesQueryListener(fragment: Fragment, adapter: AllClassesRecyclerViewAdapter) :
+        SearchView.OnQueryTextListener {
+
+        val hostFragment = fragment
+        val allClassesAdapter = adapter
+
+        override fun onQueryTextSubmit(p0: String?): Boolean {
+            return true
+        }
+
+        override fun onQueryTextChange(query: String?): Boolean {
+            editInfoViewModel.classesNotTaken.observe(hostFragment.viewLifecycleOwner, Observer { classesNotTaken ->
+                classesNotTaken?.let { allClassesAdapter.setAllClasses(classesNotTaken.filter { it.course_name.contains(query ?: "")}) }
+            })
+            return true
+        }
+    }
+
+    inner class ClassesSearchViewCloseListener(searchView : SearchView) : SearchView.OnCloseListener {
+        val search = searchView
+
+        override fun onClose(): Boolean {
+            search.clearFocus()
+            return true
         }
     }
 
