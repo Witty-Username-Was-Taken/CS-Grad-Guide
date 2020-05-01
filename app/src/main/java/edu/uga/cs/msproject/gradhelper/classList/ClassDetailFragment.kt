@@ -13,9 +13,9 @@ import edu.uga.cs.msproject.gradhelper.dataObjects.ClassItem
 
 
 /**
- * A simple [Fragment] subclass.
- * Use the [ClassDetailFragment.newInstance] factory method to
- * create an instance of this fragment.
+ * Fragment used to display Class Detail screen.
+ *
+ * @property    classItem   ClassItem object used to populate information about a course on screen
  */
 class ClassDetailFragment : Fragment() {
 
@@ -32,21 +32,17 @@ class ClassDetailFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
+        // Get the ClassItem the user selected from the arguments passed in
         classItem = arguments?.getParcelable<ClassItem>("class_info")!!
 
+        // Connect variable to UI Views
         val className = activity!!.findViewById<TextView>(R.id.className)
         val semestersOffered = activity!!.findViewById<TextView>(R.id.semestersOfferedInfo)
         val courseDesc = activity!!.findViewById<TextView>(R.id.courseDescription)
 
+        // Set text based on information from selected ClassItem
         className.text = classItem.course_name
         semestersOffered.text = classItem.semesterOffered
         courseDesc.text = classItem.description
-    }
-
-    companion object {
-        @JvmStatic
-        fun newInstance() : ClassDetailFragment {
-            return ClassDetailFragment()
-        }
     }
 }

@@ -6,6 +6,17 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
 
+/**
+ * View Model used by ResearchListFragment to access content of database and provide the list of
+ * research topics used by ResearchListRecyclerViewAdapter. ProfessorRepository is used to obtain an
+ * Observable list of all Research objects within our database.
+ *
+ * @property    repository      Instance of ProfessorRepository used to access LiveData from
+ *                              database.
+ * @property    allResearch     Observable list of all research topics
+ *
+ * @author      Tripp Guinn
+ */
 class ResearchListViewModel(application: Application) : AndroidViewModel(application) {
 
     private val repository : ProfessorRepository
@@ -20,13 +31,6 @@ class ResearchListViewModel(application: Application) : AndroidViewModel(applica
         allResearch= repository.allResearch
     }
 
-    /**
-     * The implementation of insert() in the database is completely hidden from the UI.
-     * Room ensures that you're not doing any long running operations on
-     * the main thread, blocking the UI, so we don't need to handle changing Dispatchers.
-     * ViewModels have a coroutine scope based on their lifecycle called
-     * viewModelScope which we can use here.
-     */
     fun insert(research: Research) = viewModelScope.launch {
         repository.insertResearch(research)
     }

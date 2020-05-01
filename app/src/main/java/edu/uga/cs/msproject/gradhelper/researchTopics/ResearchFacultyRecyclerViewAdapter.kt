@@ -6,6 +6,16 @@ import androidx.recyclerview.widget.RecyclerView
 import edu.uga.cs.msproject.gradhelper.R
 import edu.uga.cs.msproject.gradhelper.dataObjects.Professor
 
+/**
+ * RecyclerView for handling list of professors in ResearchDetailFragment
+ *
+ * @param       clickListener   Used to handle 'click' events
+ *
+ * @property    facultyList     List of Professor objects who have an interest in the Research topic
+ *                              displayed on screen
+ *
+ * @author      Tripp Guinn
+ */
 class ResearchFacultyRecyclerViewAdapter(val clickListener: FacultySelectionRecyclerViewClickListener) :
     RecyclerView.Adapter<ResearchFacultyListViewHolder>() {
 

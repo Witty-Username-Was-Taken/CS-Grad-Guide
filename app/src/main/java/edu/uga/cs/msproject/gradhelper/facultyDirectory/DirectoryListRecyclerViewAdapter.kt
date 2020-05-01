@@ -6,7 +6,15 @@ import androidx.recyclerview.widget.RecyclerView
 import edu.uga.cs.msproject.gradhelper.R
 import edu.uga.cs.msproject.gradhelper.dataObjects.Professor
 
-
+/**
+ * RecyclerView for handling the full list of professors in program
+ *
+ * @param       clickListener   Used to handle 'click' events
+ *
+ * @property    professors      List of Professors objects used to populate ViewHolders
+ *
+ * @author      Tripp Guinn
+ */
 class DirectoryListRecyclerViewAdapter( val clickListener: DirectorySelectionRecyclerViewClickListener) :
     RecyclerView.Adapter<DirectoryListViewHolder>() {
 
@@ -44,9 +52,5 @@ class DirectoryListRecyclerViewAdapter( val clickListener: DirectorySelectionRec
     internal fun setProfessors(professor : List<Professor>) {
         this.professors = professor
         notifyDataSetChanged()
-    }
-
-    companion object {
-        private const val TAG = "LOCATIONRECYCLERADAPTER"
     }
 }

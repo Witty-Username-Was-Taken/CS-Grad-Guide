@@ -12,11 +12,7 @@
         android:roundIcon="@mipmap/appicon_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".facultyDirectory.FacultyDetailActivity"></activity>
-        <activity android:name=".locationFinder.LocationListActivity" />
-        <activity android:name=".ResearchListActivity" />
-        <activity android:name=".MainActivity" />
-        <activity android:name=".facultyDirectory.DirectoryListActivity">
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

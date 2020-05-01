@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:isScrollContainer="true"
-        tools:context=".facultyDirectory.FacultyDetailActivity">
+        tools:context=".facultyDirectory.FacultyDetailFragment">
 
         <ImageView
             android:id="@+id/imageView3"

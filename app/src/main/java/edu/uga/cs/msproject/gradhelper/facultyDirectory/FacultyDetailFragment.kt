@@ -16,20 +16,15 @@ import edu.uga.cs.msproject.gradhelper.R
 import edu.uga.cs.msproject.gradhelper.dataObjects.Professor
 
 /**
- * A simple [Fragment] subclass.
- * Activities that contain this fragment must implement the
- * [FacultyDetailFragment.OnFragmentInteractionListener] interface
- * to handle interaction events.
- * Use the [FacultyDetailFragment.newInstance] factory method to
- * create an instance of this fragment.
+ * Fragment used to display Faculty Detail screen.
+ *
+ * @property    prof    Professor object used to update UI information
+ *
+ * @author      Tripp Guinn
  */
 class FacultyDetailFragment : Fragment() {
 
     lateinit var prof : Professor
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -80,19 +75,5 @@ class FacultyDetailFragment : Fragment() {
             }
         }
 
-    }
-
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @return A new instance of fragment FacultyDetailFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance() : FacultyDetailFragment {
-            return FacultyDetailFragment()
-        }
     }
 }

@@ -6,6 +6,14 @@ import androidx.recyclerview.widget.RecyclerView
 import edu.uga.cs.msproject.gradhelper.R
 import edu.uga.cs.msproject.gradhelper.dataObjects.ClassTaken
 
+/**
+ * RecyclerView for handling the list of classes taken by the user.
+ *
+ * @property    classesTaken        List of ClassItems that have been taken by the user.
+ *                                  Used to populate ViewHolders.
+ *
+ * @author      Tripp Guinn
+ */
 class ShowInfoClassesTakenRecyclerViewAdapter : RecyclerView.Adapter<ShowInfoClassesTakenViewHolder>() {
 
     var classesTaken = emptyList<ClassTaken>()

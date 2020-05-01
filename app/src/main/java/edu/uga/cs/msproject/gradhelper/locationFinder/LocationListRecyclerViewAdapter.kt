@@ -5,6 +5,14 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import edu.uga.cs.msproject.gradhelper.R
 
+/**
+ * RecyclerView for handling list of location types
+ *
+ * @param       locations       Array of location types
+ * @param       clickListener   Used to handle 'click' events
+ *
+ * @author      Tripp Guinn
+ */
 class LocationListRecyclerViewAdapter(val locations : Array<String>,
                                       val clickListener: LocationSelectionRecyclerViewClickListener) :
     RecyclerView.Adapter<LocationListViewHolder>() {

@@ -7,9 +7,9 @@
 
     <activity
         android:id="@+id/directoryListActivity"
-        android:name="edu.uga.cs.msproject.gradhelper.facultyDirectory.DirectoryListActivity"
+        android:name="edu.uga.cs.msproject.gradhelper.MainActivity"
         android:label="activity_directory_list"
-        tools:layout="@layout/activity_directory_list" />
+        tools:layout="@layout/activity_main" />
 
     <fragment
         android:id="@+id/directoryListFragment"

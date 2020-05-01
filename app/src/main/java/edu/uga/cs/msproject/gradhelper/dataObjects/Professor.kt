@@ -6,6 +6,24 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
+/**
+ * This Class is used as an Entity for the database. It represents professors in the Computer
+ * Science department and their information is pulled from professor_info.csv.These objects are
+ * inserted into a table named Professors within the database. It is made Parcelable so that an
+ * object of this Class can be passed from Fragment to Fragment to update the UI of a screen.
+ *
+ * @param   id          Unique Int used as Primary Key
+ * @param   lname       Professor's last name
+ * @param   fname       Professor's first name
+ * @param   title       Professor's job title
+ * @param   email       Professor's email address
+ * @param   phone       Professor's office phone number
+ * @param   office      Professor's office number
+ * @param   building    The building the professor's office is located in
+ * @param   website     Professor's academic website
+ * @param   image       Name of image file within drawable folder
+ * @author  Tripp Guinn
+ */
 @Entity(tableName = "professors")
 data class Professor(@PrimaryKey
                      val id : String,

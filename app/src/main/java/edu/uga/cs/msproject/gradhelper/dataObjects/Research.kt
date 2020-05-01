@@ -5,6 +5,18 @@ import android.os.Parcelable
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
+/**
+ * This Class is used as an Entity for the database. It represents research topics that are listed
+ * on the college's website and are created from research_list.csv. These objects are inserted into
+ * a table named Research_Topics within the database. It is made Parcelable so that an object of
+ * this Class can be passed from Fragment to Fragment to update the UI of a screen.
+ *
+ * @param   research_id             Unique Int used as Primary Key
+ * @param   name                    Name of research topic
+ * @param   description             Topic description pulled from college website
+ *
+ * @author  Tripp Guinn
+ */
 @Entity(tableName = "research_topics")
 data class Research(
     @PrimaryKey val research_id : String,

@@ -5,7 +5,8 @@ import androidx.room.*
 
 /**
  * Data Access Object designed for interacting with tables dealing with classes
- * @author tguinn
+ *
+ * @author  Tripp Guinn
  */
 @Dao
 interface ClassItemDao {

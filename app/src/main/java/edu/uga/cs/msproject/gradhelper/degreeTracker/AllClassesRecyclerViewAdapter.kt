@@ -7,6 +7,15 @@ import edu.uga.cs.msproject.gradhelper.R
 import edu.uga.cs.msproject.gradhelper.dataObjects.ClassItem
 import edu.uga.cs.msproject.gradhelper.dataObjects.EditInfoViewModel
 
+/**
+ * RecyclerView for handling the full list of classes not taken yet
+ *
+ * @param       editInfoViewModel   View Model used to inform data displayed in EditInfoFragment.
+ *
+ * @property    allClasses          List of ClassItems that have not been taken by the user.
+ *                                  Used to populate ViewHolders.
+ * @property    viewModel           Local reference to editInfoViewModel
+ */
 class AllClassesRecyclerViewAdapter(editInfoViewModel: EditInfoViewModel) : RecyclerView.Adapter<EditInfoAllClassesViewHolder>() {
 
     var allClasses = emptyList<ClassItem>()

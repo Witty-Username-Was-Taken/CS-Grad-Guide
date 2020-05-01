@@ -24,15 +24,17 @@ import edu.uga.cs.msproject.gradhelper.R
 import edu.uga.cs.msproject.gradhelper.dataObjects.ShowInfoViewModel
 
 /**
- * A simple [Fragment] subclass.
+ * A Fragment subclass used to create the Show Info screen.
+ *
+ * @property    showInfoViewModel           ViewModel used to update UI
+ * @property    classesTakenRecyclerView    RecyclerView for classes taken
+ * @property    toolbarEdit                 Edit text in toolbar, used to make visible
+ * @property    coreAreas                   List of Strings used associate with an ImageView
+ * @property    degreePrograms              Array of Strings of possible degree programs
+ *
+ * @author      Tripp Guinn
  */
 class ShowInfoFragment : Fragment() {
-
-    enum class DegreeObjectives {
-        MastersThesis,
-        MastersNonThesis,
-        Doctoral
-    }
 
     private lateinit var showInfoViewModel: ShowInfoViewModel
     lateinit var classesTakenRecyclerView : RecyclerView
@@ -46,9 +48,6 @@ class ShowInfoFragment : Fragment() {
     lateinit var additionalReqTwoImage : ImageView
     lateinit var additionalReqThreeImage : ImageView
 
-
-
-
     private val coreAreas = listOf<String>("Theory","System Design","Software Design")
     private lateinit var degreePrograms : Array<String>
 
@@ -57,25 +56,26 @@ class ShowInfoFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
+        // Get degree program String Array from Resources
         degreePrograms = resources.getStringArray(R.array.degree_types)
 
-        // Inflate the layout for this fragment
+        // Get NavController to change to Edit Info Screen when necessary
         val navController = findNavController()
+
+        // When Edit button is clicked, app should navigate to Edit Info screen
         toolbarEdit = activity!!.findViewById<TextView>(R.id.edit_button)
         toolbarEdit.setOnClickListener{
             onDetach()
             navController.navigate(R.id.editInfoFragment)
         }
 
+        // User has no degree program selected, move to Edit Info screen
+        val preferences = this.activity!!.getPreferences(Context.MODE_PRIVATE)
+        if (preferences.getInt("degree_program", 0) == 0) {
+            navController.navigate(R.id.editInfoFragment)
+        }
+
         showInfoViewModel = ViewModelProvider(this).get(ShowInfoViewModel::class.java)
-        showInfoViewModel.allClassesTaken.observe(this.viewLifecycleOwner, Observer { classesTaken ->
-            classesTaken?.let {
-                if(classesTaken.isEmpty()) {
-                    onDetach()
-                    navController.navigate(R.id.editInfoFragment)
-                }
-            }
-        })
 
         return inflater.inflate(R.layout.fragment_show_info, container, false)
     }
@@ -94,9 +94,9 @@ class ShowInfoFragment : Fragment() {
             "Software Design" to R.id.software_design_req_imageview,
             "System Design" to R.id.system_design_req_imageview)
 
+        // Number of advanced level classes needed for each degree program
         val advancedCoursework = mapOf(degreePrograms[1] to 2,
             degreePrograms[2] to 4, degreePrograms[3] to 6)
-
 
         programName.text = programArray[preferences.getInt("degree_program", 0)]
 
@@ -110,6 +110,7 @@ class ShowInfoFragment : Fragment() {
         additionalReqTwoImage = view!!.findViewById(R.id.additional_req_imageview2)
         additionalReqThreeImage = view!!.findViewById(R.id.additional_req_imageview3)
 
+        // Set "Edit" button to visible and make it interactable
         toolbarEdit.visibility = View.VISIBLE
         toolbarEdit.isClickable = true
 

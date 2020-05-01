@@ -7,6 +7,11 @@ import androidx.recyclerview.widget.RecyclerView
 import edu.uga.cs.msproject.gradhelper.R
 import kotlinx.android.synthetic.main.add_class_view_holder.view.*
 
+/**
+ * Simple ViewHolder subclass for ClassesTakenRecyclerViewAdapter
+ *
+ * @author  Tripp Guinn
+ */
 class EditInfoClassesTakenViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
     val className = itemView.findViewById<TextView>(R.id.class_name)
     val removeButton = itemView.findViewById<ImageView>(R.id.deleteButton)

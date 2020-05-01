@@ -54,14 +54,14 @@
 
 
     <string-array name="location_types">
-        <item>Restaurant</item>
-        <item>Coffee Shop</item>
-        <item>Grocery Store</item>
-        <item>Pharmacy</item>
-        <item>Department Store</item>
-        <item>Doctor\'s Office</item>
+        <item>Grocery Stores</item>
+        <item>Restaurants</item>
+        <item>Pharmacies</item>
+        <item>Hospitals</item>
+        <item>Coffee Shops</item>
+        <item>Department Stores</item>
+        <item>Doctor\'s Offices</item>
         <item>Attractions</item>
-        <item>Hospital</item>
     </string-array>
 
     <string-array name="degree_types">
@@ -70,7 +70,4 @@
         <item>M.S. Thesis</item>
         <item>Ph.D</item>
     </string-array>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

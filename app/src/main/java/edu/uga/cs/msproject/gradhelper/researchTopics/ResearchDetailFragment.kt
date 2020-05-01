@@ -21,10 +21,9 @@ import edu.uga.cs.msproject.gradhelper.dataObjects.Research
 import edu.uga.cs.msproject.gradhelper.dataObjects.ResearchDetailViewModel
 
 /**
- * A simple [Fragment] subclass.
- * Activities that contain this fragment must implement the
- * [ResearchDetailFragment.OnFragmentInteractionListener] interface
- * to handle interaction events.
+ * Fragment used to display Research Detail screen.
+ *
+ * @property    research    Research object used to update UI information
  */
 class ResearchDetailFragment : Fragment(),
     ResearchFacultyRecyclerViewAdapter.FacultySelectionRecyclerViewClickListener {
@@ -70,7 +69,7 @@ class ResearchDetailFragment : Fragment(),
 
         researchDetailViewModel = ViewModelProvider(this).get(ResearchDetailViewModel::class.java)
 
-        researchDetailViewModel.researchProfs.observe(this, Observer { researchProfs ->
+        researchDetailViewModel.researchProfs.observe(this.viewLifecycleOwner, Observer { researchProfs ->
             researchProfs.let {
                 for (x in it) {
                     if (x.research.research_id == research.research_id) {
@@ -94,17 +93,6 @@ class ResearchDetailFragment : Fragment(),
         listener?.onFacultyItemInteraction(professor)
     }
 
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     *
-     *
-     * See the Android Training lesson [Communicating with Other Fragments]
-     * (http://developer.android.com/training/basics/fragments/communicating.html)
-     * for more information.
-     */
     interface OnResearchDetailFragmentInteractionListener {
         // TODO: Update argument type and name
         fun onFacultyItemInteraction(professor: Professor)

@@ -6,16 +6,21 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
 
+/**
+ * View Model used by DirectoryListFragment to access content of database and provide the list of
+ * classes used by DirectoryListRecyclerViewAdapter. ProfessorRepository is used to obtain an Observable
+ * list of all professors within our database.
+ * @property    repository      Instance of ProfessorRepository used to access LiveData from
+ *                              database.
+ * @property    allProfessors   Observable list of all professors in database.
+ * @author      Tripp Guinn
+ */
 class ProfessorListViewModel(application: Application) : AndroidViewModel(application) {
 
-    // The ViewModel maintains a reference to the repository to get data
     private val repository: ProfessorRepository
-    // LiveData gives us updated words when they change
     val allProfessors: LiveData<List<Professor>>
 
     init {
-        // Gets reference to WordDao from WordRoomDatabase to construct
-        // the correct repository
         val professorDao = ProfessorDatabase.getDatabase(application, viewModelScope).professorDao()
         val researchDao = ProfessorDatabase.getDatabase(application, viewModelScope).researchDao()
         val classItemDao = ProfessorDatabase.getDatabase(application, viewModelScope).classItemDao()
@@ -24,11 +29,7 @@ class ProfessorListViewModel(application: Application) : AndroidViewModel(applic
     }
 
     /**
-     * The implementation of insert() in the database is completely hidden from the UI.
-     * Room ensures that you're not doing any long running operations on
-     * the main thread, blocking the UI, so we don't need to handle changing Dispatchers.
-     * ViewModels have a coroutine scope based on their lifecycle called
-     * viewModelScope which we can use here.
+     * Used to insert Professor object using ViewModel
      */
     fun insert(professor: Professor) = viewModelScope.launch {
         repository.insertProfessor(professor)

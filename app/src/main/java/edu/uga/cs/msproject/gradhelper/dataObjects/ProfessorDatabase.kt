@@ -14,6 +14,10 @@ import kotlinx.coroutines.launch
 import java.io.InputStreamReader
 import java.lang.Exception
 
+/**
+ * Android Room Database Class. Creates database from csv files and maintains DAO objects used to
+ * access contents of it.
+ */
 @Database(entities = arrayOf(Professor::class,Research::class,ProfessorResearchCrossRef::class,
     ClassItem::class, ClassTaken::class), version = 1, exportSchema = false)
 abstract class ProfessorDatabase : RoomDatabase() {
@@ -24,8 +28,9 @@ abstract class ProfessorDatabase : RoomDatabase() {
 
     companion object {
 
-        final val TAG = "DATABASE"
+        const val TAG = "DATABASE"
 
+        // Singleton instance used by Repository
         @Volatile
         private var INSTANCE: ProfessorDatabase? = null
 
@@ -66,12 +71,21 @@ abstract class ProfessorDatabase : RoomDatabase() {
                 }
             }
 
+            /**
+             * Asynchronous function called on startup.
+             * Checks if tables are empty and populates them from csv files if they are.
+             *
+             * @param   professorDao    DAO for managing information related to Professors
+             * @param   researchDao     DAO for managing information related to Research
+             * @param   classItemDao    DAO for managing information related to Classes
+             * @param   res             Resource object used to access raw resources (csv files)
+             */
             suspend fun populateDatabase(professorDao: ProfessorDao, researchDao: ResearchDao,
                                          classItemDao: ClassItemDao, res: Resources) {
 
                 System.out.println("ProfessorDatabase populateDatabase!")
 
-                // Populate Professors table
+                // If there are no rows in Professors table, populate it
                 if (professorDao.professorsCount() == 0) {
                     try {
                         var csvReader =
@@ -102,11 +116,8 @@ abstract class ProfessorDatabase : RoomDatabase() {
 
                     }
                 }
-                else {
-                    System.out.println("Professor Count: " + professorDao.professorsCount())
-                }
 
-                // Populate Research table
+                // If there are no rows in Research_Topics table, populate it
                 if (researchDao.researchCount() == 0) {
                     try {
                         var csvReader =
@@ -126,7 +137,7 @@ abstract class ProfessorDatabase : RoomDatabase() {
                     }
                 }
 
-                // Populate ResearchProf table
+                // If there are no rows in ResearchProf table, populate it
                 if (professorDao.profResearchCount() == 0) {
                     try {
                         var csvReader =
@@ -147,7 +158,7 @@ abstract class ProfessorDatabase : RoomDatabase() {
                     }
                 }
 
-                // Populate Classes table
+                // If there are no rows in Classes table, populate it
                 if (classItemDao.classesCount() == 0) {
                     try {
                         var csvReader =
